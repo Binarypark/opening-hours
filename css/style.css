@@ -1,0 +1,24 @@
+
+/* 
+    Created on : 06.12.2013, 22:44:15
+    Author     : Cosmin
+*/
+
+.openingHours {
+    max-width:350px;
+}
+
+.dayContainer {
+    width:100%;
+    float:left;
+}
+
+.day {
+    width:49%;
+    float:left;
+}
+
+.hour {
+    width:49%;
+    float:right;
+}
