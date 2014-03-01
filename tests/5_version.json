@@ -1,0 +1,44 @@
+{
+    "weekPeriod": [
+        {
+            "dayOfWeek": "Monday",
+            "opens": "11:00:00",
+            "closes": "11:15:00"
+        },
+        {
+            "dayOfWeek": "Monday",
+            "opens": "11:30:00",
+            "closes": "11:45:00"
+        },
+        {
+            "dayOfWeek": "Tuesday",
+            "opens": "21:30:00",
+            "closes": "21:45:00"
+        },
+        {
+            "dayOfWeek": "Tuesday",
+            "opens": "11:30:00",
+            "closes": "11:45:00"
+        },
+        {
+            "dayOfWeek": "Wednesday",
+            "opens": "11:00:00",
+            "closes": "18:00:00"
+        },
+        {
+            "dayOfWeek": "Saturday",
+            "opens": "14:00:00",
+            "closes": "18:00:00"
+        },
+        {
+            "dayOfWeek": "Friday",
+            "opens": "11:00:00",
+            "closes": "18:00:00"
+        },
+        {
+            "dayOfWeek": "Sunday",
+            "opens": "14:00:00",
+            "closes": "18:00:00"
+        }
+    ]
+}

@@ -1,7 +1,7 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
+ * Opening Hours framework 
+ * 
  */
 
 
@@ -21,7 +21,7 @@ var OpeningHours = (function() {
      * @param {type} contentType
      * @returns {unresolved}
      */
-     getData = function(url, contentType) {
+    getData = function(url, contentType) {
         var data = null;
         var req = new XMLHttpRequest();
 
@@ -49,13 +49,13 @@ var OpeningHours = (function() {
      * Add the day names to the list according to the language required in the json file
      * @returns {undefined}
      */
-    /*addDayList = function() {
-     var days = createMomentDays(json.lang, "normal");
-     
-     for (var i = 0; i < propertyDays.length; i++) {
-     propertyDays[i].name = days[i];
-     }
-     };*/
+    addDayList = function(lang) {
+        var days = createMomentDays(lang, "normal");
+
+        for (var i = 0; i < propertyDays.length; i++) {
+            propertyDays[i].name = days[i];
+        }
+    };
 
 
     getCloseString = function(lang) {
@@ -100,10 +100,15 @@ var OpeningHours = (function() {
             var hours = dayList.hours;
             var boolean;
             for (var i = 0; i < listLength; i++) {
-                if ((moment(hours[i].opens, "h:m:s").format("H") === moment(dayPeriod.opens, "h:m:s").format("H")) & (moment(hours[i].closes, "h:m:s").format("H") === moment(dayPeriod.closes, "h:m:s").format("H"))) {
-                    boolean = true;
-                    //we have to avoid adding 2 objects with the same opening and closing time
-                    break;
+                if ((moment(hours[i].opens, "h:m:s").hour() === moment(dayPeriod.opens, "h:m:s").hour()) & (moment(hours[i].closes, "h:m:s").hour() === moment(dayPeriod.closes, "h:m:s").hour())) {
+                    if ((moment(hours[i].opens, "h:m:s").minute() === moment(dayPeriod.opens, "h:m:s").minute()) & (moment(hours[i].closes, "h:m:s").minute() === moment(dayPeriod.closes, "h:m:s").minute())) {
+                        boolean = true;
+                        break;
+                    } else {
+                        boolean = false;
+                        break;
+                    }
+                    //we have to avoid adding 2 objects with the same opening and closing time                  
                 } else {
                     boolean = false;
                 }
@@ -134,12 +139,13 @@ var OpeningHours = (function() {
     };
     /**
      * We add the opening hours to our ordered array
-     * @param {type} json
+     * @param {type} data
      * @returns {undefined}
      */
-    buildPropertyDays = function(json) {
+    buildPropertyDays = function(data) {
         //take the weekPeriod array
-        var weekPeriod = json.weekPeriod;
+        var weekPeriod = data.weekPeriod;
+       
         try {
             $.each(propertyDays, function(days) {
                 $.each(weekPeriod, function(day) {
@@ -171,8 +177,15 @@ var OpeningHours = (function() {
 
                 for (var j = i + 1; j <= hours.length - 1; j++) {
 
-                    if ((parseInt(hours[i].opens)) > (parseInt(hours[j].opens))) {
-
+                    if ((moment(hours[i].opens, "h:m:s").hour()) === (moment(hours[j].opens, "h:m:s").hour())) {
+                        if ((moment(hours[i].opens, "h:m:s").minute()) > (moment(hours[j].opens, "h:m:s").minute())) {
+                            var aux = hours[i];
+                            hours[i] = hours[j];
+                            hours[j] = aux;
+                        } else {
+                            continue;
+                        }
+                    } else if ((moment(hours[i].opens, "h:m:s").hour()) > (moment(hours[j].opens, "h:m:s").hour())) {
                         var aux = hours[i];
                         hours[i] = hours[j];
                         hours[j] = aux;
@@ -182,7 +195,7 @@ var OpeningHours = (function() {
         }
         return array;
     };
-    
+
     /**
      * Used for the days list from Moment
      * @param {type} arrayList
@@ -195,12 +208,17 @@ var OpeningHours = (function() {
     };
 
     checkMatchingHours = function(firstList, secondList) {
-       
+
         for (var i = 0; i < firstList.length; i++) {
             for (var j = 0; j < secondList.length; j++) {
-                if ((moment(firstList[i].opens, "h:m:s").format("H") === moment(secondList[i].opens, "h:m:s").format("H")) &
-                        (moment(firstList[i].closes, "h:m:s").format("H") === moment(secondList[i].closes, "h:m:s").format("H"))) {
-                    return true;
+                if ((moment(firstList[i].opens, "h:m:s").hour() === moment(secondList[i].opens, "h:m:s").hour()) &
+                        (moment(firstList[i].closes, "h:m:s").hour() === moment(secondList[i].closes, "h:m:s").hour())) {
+                    if ((moment(firstList[i].opens, "h:m:s").minute() === moment(secondList[i].opens, "h:m:s").minute()) &
+                            (moment(firstList[i].closes, "h:m:s").minute() === moment(secondList[i].closes, "h:m:s").minute())) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 } else {
                     return false;
                 }
@@ -217,6 +235,7 @@ var OpeningHours = (function() {
      */
     createMomentDays = function(lang, daysForm) {
         moment.lang(lang);
+      
         if (daysForm === "short") {
             return shiftList(moment.weekdaysShort());
         } else if (daysForm === "min") {
@@ -254,7 +273,7 @@ var OpeningHours = (function() {
                 for (var j = temp; j < array.length; j++) {
                     if ((array[j].hours.length === 0) || (!(checkMatchingHours(array[pos].hours, array[j].hours)))) {
                         dayElement.append(momentDays[j - 1] + ": ");
-                        pos = j-1;
+                        pos = j - 1;
                         break;
                     } else if ((j === array.length - 1) & (checkMatchingHours(array[j].hours, array[pos].hours))) {
                         dayElement.append(momentDays[j] + ": ");
@@ -366,13 +385,10 @@ var OpeningHours = (function() {
      * @param {type} daysType
      * @returns {undefined}
      */
-    createOpeningHours = function(openingHoursContainer, days, lang, daysType)  {
+    createOpeningHours = function(openingHoursContainer, days, lang, daysType) {
         var momentDays = createMomentDays(lang, daysType);
         var container = $(openingHoursContainer);
-        container.attr({
-           itemscope : '',
-           itemtype : 'http://schema.org/OpeningHoursSpecification'
-        });
+
         closeString = getCloseString(lang);
         for (var i = 0; i < days.length; i++) {
 
@@ -407,11 +423,12 @@ var OpeningHours = (function() {
             buildPropertyDays(options.json);
             checkDefaultOptions(OpeningHours.default, options);
             createOpeningHours(options.openingHoursContainer, propertyDays, options.lang, options.daysForm);
+            
         }
     };
 })();
 
 OpeningHours.default = ({
-    lang: "en",
+    lang : "en",
     daysForm: "normal"
 });
