@@ -1,5 +1,5 @@
 #OpeningHours.js#
-=============
+
 An easy-to-use library for rendering your company's Opening Hours. All you need is JSON, [jQuery](http://jquery.com/) and [momentjs](http://momentjs.com/)
 
 ## Install

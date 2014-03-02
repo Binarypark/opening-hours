@@ -1,0 +1,19 @@
+{
+    "en": {
+        "closedString": "closed",
+        "header": "Opening hours"
+    },
+    "de": {
+        "closedString": "geschlossen",
+        "header": "Öffnungszeiten"
+    },
+    "ro": {
+        "closedString": "închis",
+        "header": "Program de lucru"
+    },
+    "it": {
+        "closedString": "chiuso",
+        "header": "Orari di apertura"
+    }
+}
+

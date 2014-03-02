@@ -12,8 +12,12 @@ var OpeningHours = (function() {
      * therefore we add the elements from json in an ordered array
      */
     var propertyDays = [{"name": "Monday", "hours": []}, {"name": "Tuesday", "hours": []}, {"name": "Wednesday", "hours": []}, {"name": "Thursday", "hours": []}, {"name": "Friday", "hours": []}, {"name": "Saturday", "hours": []}, {"name": "Sunday", "hours": []}];
-    //here we keep the close string data from the file
-    var closeString = "";
+    /*
+     * 
+     * here we keep additional data like the string used for the days when the company is closed
+     * or for the Header of the container
+     */
+    var additionalData = "";
     /*
      * Simple Ajax call 
      * 
@@ -45,25 +49,12 @@ var OpeningHours = (function() {
         return JSON.parse(getData(url, 'text/html;charset=utf-8;'));
     };
 
-    /*
-     * Add the day names to the list according to the language required in the json file
-     * @returns {undefined}
-     */
-    addDayList = function(lang) {
-        var days = createMomentDays(lang, "normal");
-
-        for (var i = 0; i < propertyDays.length; i++) {
-            propertyDays[i].name = days[i];
-        }
-    };
-
-
-    getCloseString = function(lang) {
-        var closeJson = getJsonFile('closed.json');
-        if (closeJson[lang]) {
-            return closeJson[lang];
+    getAdditionalData= function(lang) {
+        var addData = getJsonFile('additionalData.json');
+        if (addData[lang]) {
+            return addData[lang];
         } else {
-            return 'closed';
+            return 'language not found!';
         }
     };
     /**
@@ -206,7 +197,13 @@ var OpeningHours = (function() {
         arrayList.shift();
         return arrayList;
     };
-
+    
+    createHeader = function(container, string) {
+        var header = $('<div class="header"></div>');
+        header.append('<strong>' + string + '</strong>');
+        return $(container).append(header);
+    };
+    
     checkMatchingHours = function(firstList, secondList) {
 
         for (var i = 0; i < firstList.length; i++) {
@@ -245,7 +242,7 @@ var OpeningHours = (function() {
         }
     };
 
-    serie3 = function(array, pos, container, momentDays) {
+    serie3 = function(array, pos, container, momentDays, additionalData) {
         var dayContainer = $('<div class="dayContainer"></div>');
         var dayElement = $('<div class="day"></div>');
         var hourElement = $('<div class="hour"></div>');
@@ -264,7 +261,7 @@ var OpeningHours = (function() {
                     break;
                 }
             }
-            hourElement.append(closeString);
+            hourElement.append(additionalData.closedString);
         }
         else if (array[pos].hours.length !== 0) {
             if ((checkMatchingHours(array[pos].hours, array[pos + 1].hours)) & (checkMatchingHours(array[pos + 1].hours, array[pos + 2].hours))) {
@@ -286,7 +283,6 @@ var OpeningHours = (function() {
                     if (x === array[temp].hours.length - 1) {
                         hourElement.append(moment(array[temp].hours[x].opens, "h:m:s").format('H:mm') + "-" + moment(array[temp].hours[x].closes, "h:m:s").format('H:mm'));
                     } else {
-
                         hourElement.append(moment(array[temp].hours[x].opens, "h:m:s").format('H:MM') + "-" + moment(array[temp].hours[x].closes, "h:m:s").format('H:mm') + ", ");
                     }
                 }
@@ -321,7 +317,7 @@ var OpeningHours = (function() {
         return pos;
     };
 
-    serie2 = function(array, pos, container, momentDays) {
+    serie2 = function(array, pos, container, momentDays, additionalData) {
         var dayContainer = $('<div class="dayContainer"></div>');
         var dayElement = $('<div class="day"></div>');
         var hourElement = $('<div class="hour"></div>');
@@ -329,7 +325,7 @@ var OpeningHours = (function() {
 
         if (array[pos].hours.length === 0) {
             dayElement.append(momentDays[pos] + ", " + momentDays[pos + 1] + ": ");
-            hourElement.append(closeString);
+            hourElement.append(additionalData.closedString);
             pos = pos + 1;
         } else {
             if (checkMatchingHours(array[pos].hours, array[pos + 1].hours)) {
@@ -354,13 +350,13 @@ var OpeningHours = (function() {
         container.append(dayContainer);
         return pos;
     };
-    serie1 = function(array, pos, container, momentDays) {
+    serie1 = function(array, pos, container, momentDays, additionalData) {
         var dayContainer = $('<div class="dayContainer"></div>');
         var dayElement = $('<div class="day"></div>');
         var hourElement = $('<div class="hour"></div>');
         dayElement.append(momentDays[pos] + ": ");
         if (array[pos].hours.length === 0) {
-            hourElement.append(closeString);
+            hourElement.append(additionalData.closedString);
         } else {
             for (var x = 0; x < array[pos].hours.length; x++) {
                 if (x === array[pos].hours.length - 1) {
@@ -388,32 +384,33 @@ var OpeningHours = (function() {
     createOpeningHours = function(openingHoursContainer, days, lang, daysType) {
         var momentDays = createMomentDays(lang, daysType);
         var container = $(openingHoursContainer);
-
-        closeString = getCloseString(lang);
+        
+        additionalData = getAdditionalData(lang);
+        createHeader(openingHoursContainer, additionalData.header);
         for (var i = 0; i < days.length; i++) {
 
             if (i < days.length - 2) {
                 if ((days[i].hours.length === days[i + 1].hours.length) & (days[i + 1].hours.length === days[i + 2].hours.length)) {
-                    i = serie3(days, i, container, momentDays);
+                    i = serie3(days, i, container, momentDays, additionalData);
                 }
                 else if ((days[i].hours.length === days[i + 1].hours.length) & (days[i + 2].hours.length !== days[i].hours.length)) {
-                    i = serie2(days, i, container, momentDays);
+                    i = serie2(days, i, container, momentDays, additionalData);
 
                 }
                 else if (days[i].hours.length !== days[i + 1].hours.length) {
 
-                    serie1(days, i, container, momentDays);
+                    serie1(days, i, container, momentDays, additionalData);
                 }
             }
             else if (i === days.length - 2) {
                 if (days[i].hours.length === days[i + 1].hours.length) {
-                    i = serie2(days, i, container, momentDays);
+                    i = serie2(days, i, container, momentDays, additionalData);
                 } else {
-                    serie1(days, i, container, momentDays);
+                    serie1(days, i, container, momentDays, additionalData);
                 }
             }
             else if (i === days.length - 1) {
-                serie1(days, i, container, momentDays);
+                serie1(days, i, container, momentDays, additionalData);
             }
         }
     };
