@@ -14,6 +14,10 @@
     "it": {
         "closedString": "chiuso",
         "header": "Orari di apertura"
+    },
+    "es" : {
+        "closedString" : "cerrado",
+        "header" : "Horario"
     }
 }
 
