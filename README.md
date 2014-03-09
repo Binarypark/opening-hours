@@ -6,7 +6,7 @@ An easy-to-use library for rendering your company's Opening Hours. All you need 
 
 ### Step 1 - Link files
 
- Link the [jQuery](http://jquery.com/ ), [momentjs](http://momentjs.com/) and OpeningHours libraries somewhere in the <head> of your document.
+ Link the [jQuery](http://jquery.com/ ), [momentjs](http://momentjs.com/) and OpeningHours libraries somewhere in the ```<head>``` of your document.
 
 ```html
 <link rel="stylesheet" href="OpeningHours.css" type="text/css" />
@@ -68,7 +68,7 @@ Add the div container where you want to render the opening hours.
 
 ### Step 4 - Create the opening hours
 
-Add the following JavaScript code into the <head> of your document, under the links from ```Step 1```
+Add the following JavaScript code into the ```<head>``` of your document, under the links from ```Step 1```
 
 ```javascript
 $(function() {
