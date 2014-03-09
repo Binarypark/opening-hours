@@ -129,7 +129,7 @@ var OpeningHours = (function() {
             mainOptions.daysForm = defaultObject.daysForm;
         }
         if (!(mainOptions.hasOwnProperty("weekPeriods"))) {
-            mainOptions.daysForm = defaultObject.weekPeriods;
+            mainOptions.weekPeriods = defaultObject.weekPeriods;
         }
     };
     /**
@@ -411,6 +411,7 @@ var OpeningHours = (function() {
      */
     createOpeningHours = function(openingHoursContainer, days, lang, daysType) {
         var momentDays = createMomentDays(lang, daysType);
+       
         var container = $(openingHoursContainer);
 
         additionalData = getAdditionalData(lang);
