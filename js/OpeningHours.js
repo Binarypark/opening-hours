@@ -49,8 +49,9 @@ var OpeningHours = (function() {
         return JSON.parse(getData(url, 'text/html;charset=utf-8;'));
     };
 
-    getAdditionalData= function(lang) {
+    getAdditionalData = function(lang) {
         var addData = getJsonFile('additionalData.json');
+
         if (addData[lang]) {
             return addData[lang];
         } else {
@@ -127,6 +128,29 @@ var OpeningHours = (function() {
         if (!(mainOptions.hasOwnProperty("daysForm"))) {
             mainOptions.daysForm = defaultObject.daysForm;
         }
+        if (!(mainOptions.hasOwnProperty("weekPeriods"))) {
+            mainOptions.daysForm = defaultObject.weekPeriods;
+        }
+    };
+    /**
+     * 
+     * @param {type} periods
+     */
+    getWeekPeriod = function(periods) {
+        if ( periods instanceof Array ){       
+           
+            for (var i = 0; i < periods.length; i++) {
+               
+                if ((moment().month() >= moment(periods[i].validFrom, "YYYY-MM-DD").month()) & (moment().month() <= moment(periods[i].validThrough).month())){
+                    if ((moment().date() >= moment(periods[i].validFrom, "YYYY-MM-DD").date()) & (moment().date() <= moment(periods[i].validThrough).date())){
+                        return periods[i].weekPeriod;
+                        break;
+                    } else {
+                        continue;
+                    }
+                }
+            }
+        }
     };
     /**
      * We add the opening hours to our ordered array
@@ -135,8 +159,12 @@ var OpeningHours = (function() {
      */
     buildPropertyDays = function(data) {
         //take the weekPeriod array
-        var weekPeriod = data.weekPeriod;
-       
+        var weekPeriod;
+        if (data.weekPeriods === 'true'){
+            weekPeriod = getWeekPeriod(data.json);
+        } else {
+            weekPeriod = data.json["weekPeriod"];            
+        }    
         try {
             $.each(propertyDays, function(days) {
                 $.each(weekPeriod, function(day) {
@@ -197,13 +225,13 @@ var OpeningHours = (function() {
         arrayList.shift();
         return arrayList;
     };
-    
+
     createHeader = function(container, string) {
         var header = $('<div class="header"></div>');
         header.append('<strong>' + string + '</strong>');
         return $(container).append(header);
     };
-    
+
     checkMatchingHours = function(firstList, secondList) {
 
         for (var i = 0; i < firstList.length; i++) {
@@ -232,7 +260,7 @@ var OpeningHours = (function() {
      */
     createMomentDays = function(lang, daysForm) {
         moment.lang(lang);
-      
+
         if (daysForm === "short") {
             return shiftList(moment.weekdaysShort());
         } else if (daysForm === "min") {
@@ -384,7 +412,7 @@ var OpeningHours = (function() {
     createOpeningHours = function(openingHoursContainer, days, lang, daysType) {
         var momentDays = createMomentDays(lang, daysType);
         var container = $(openingHoursContainer);
-        
+
         additionalData = getAdditionalData(lang);
         createHeader(openingHoursContainer, additionalData.header);
         for (var i = 0; i < days.length; i++) {
@@ -417,15 +445,15 @@ var OpeningHours = (function() {
 
     return {
         create: function(options) {
-            buildPropertyDays(options.json);
+            buildPropertyDays(options);
             checkDefaultOptions(OpeningHours.default, options);
             createOpeningHours(options.openingHoursContainer, propertyDays, options.lang, options.daysForm);
-            
         }
     };
 })();
 
 OpeningHours.default = ({
-    lang : "en",
+    lang: "en",
+    weekPeriods: "no",
     daysForm: "normal"
 });
