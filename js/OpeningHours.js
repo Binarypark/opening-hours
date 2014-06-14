@@ -21,7 +21,6 @@
     Plugin.prototype = {
         init: function() {
             this.buildPropertyDays(this.settings.json);
-            //checkDefaultOptions(OpeningHours.default, options);
             this.createOpeningHours(this.element, this._propertyDays, this.settings.lang, this.settings.daysForm);
         },
         /*
