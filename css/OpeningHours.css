@@ -6,6 +6,7 @@
 
 .openingHours {
     max-width:355px;
+    display:table;
 }
 
 .dayContainer {
