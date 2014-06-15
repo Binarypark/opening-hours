@@ -18,6 +18,22 @@
     "es" : {
         "closedString" : "cerrado",
         "header" : "Horario"
+    }, 
+    "ru" : {
+        "closedString" : "закрыто",
+        "header" : "Рабочие часы"
+    }, 
+    "fr" : {
+        "closedString" : "fermé",
+        "header" : "Horaires d'ouverture"
+    }, 
+    "pt" : {
+        "closedString" : "fechado",
+        "header" : "Horário"
+    },
+    "bg" : {
+        "closedString" : "затворен",
+        "header" : "Разписание"
     }
 }
 

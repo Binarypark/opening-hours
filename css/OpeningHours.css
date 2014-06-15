@@ -5,7 +5,8 @@
 */
 
 .openingHours {
-    max-width:350px;
+    max-width:355px;
+    display:table;
 }
 
 .dayContainer {
