@@ -116,24 +116,6 @@
             }
         },
         /**
-         * The lang and daysForm property are optional when calling OpeningHours.create({});
-         * Therefore we use default values
-         * @param {type} defaultObject
-         * @param {type} mainOptions
-         * @returns {undefined}
-         */
-        checkDefaultOptions: function(defaultObject, mainOptions) {
-            if (!(mainOptions.hasOwnProperty("lang"))) {
-                mainOptions.lang = defaultObject.lang;
-            }
-            if (!(mainOptions.hasOwnProperty("daysForm"))) {
-                mainOptions.daysForm = defaultObject.daysForm;
-            }
-            if (!(mainOptions.hasOwnProperty("weekPeriods"))) {
-                mainOptions.weekPeriods = defaultObject.weekPeriods;
-            }
-        },
-        /**
          * 
          * @param {type} periods
          */
@@ -141,8 +123,8 @@
             if (periods instanceof Array) {
                 for (var i = 0; i < periods.length; i++) {
                     
-                    if ((moment().month() >= moment(periods[i].validFrom, "YYYY-MM-DD").month()) & (moment().month() <= moment(periods[i].validThrough).month())) {
-                        if ((moment().date() >= moment(periods[i].validFrom, "YYYY-MM-DD").date()) & (moment().date() <= moment(periods[i].validThrough).date())) {
+                    if ((moment().month() >= moment(periods[i].validFrom, "YYYY-MM-DD").month()) & (moment().month() <= moment(periods[i].validThrough, "YYYY-MM-DD").month())) {
+                        if ((moment().date() >= moment(periods[i].validFrom, "YYYY-MM-DD").date()) & (moment().date() <= moment(periods[i].validThrough, "YYYY-MM-DD").date())) {
                             return periods[i].weekPeriod;
                             break;
                         } else {
