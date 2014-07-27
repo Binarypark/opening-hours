@@ -1,4 +1,4 @@
-#OpeningHours.js#
+    #OpeningHours.js#
 
 An easy-to-use library for rendering your company's Opening Hours. All you need is JSON, [jQuery](http://jquery.com/) and [momentjs](http://momentjs.com/)
 
@@ -73,17 +73,14 @@ Add the following JavaScript code into the ```<head>``` of your document, under 
 ```javascript
 $(function() {
     if (OpeningHours) {
-        $.getJSON('url_to_json_file', function(data) {
+         $.getJSON('tests/multipleWeeks_version.json', function(data) {
             if (data) {
-                OpeningHours.create({
-                    json: data,
-                    lang: "en",
-                    daysForm: 'normal',
-                    openingHoursContainer: '.openingHours'
-                });
-            } 
+              $('.openingHours').openingHours({
+                   //options goes here
+              });
+           }
         });
-    } 
+     } 
 });
 ```
 

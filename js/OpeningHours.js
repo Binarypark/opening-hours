@@ -1,5 +1,5 @@
 ;
-(function($, window, document, undefined) {
+(function($, window, document) {
     var pluginName = 'openingHours',
             defaults = {
                 lang: "en",
@@ -80,7 +80,8 @@
          * @returns {undefined}
          */
         addOpeningHours: function(dayList, dayPeriod) {
-   
+            console.log("aici");
+            console.log(dayList)
             if (dayList.hours.length === 0) {
                 /*
                  * if there is no opening time in the specific day, we just add an object to the hours list
@@ -122,15 +123,20 @@
         getWeekPeriod: function(periods) {
             if (periods instanceof Array) {
                 for (var i = 0; i < periods.length; i++) {
-                    
-                    if ((moment().month() >= moment(periods[i].validFrom, "YYYY-MM-DD").month()) & (moment().month() <= moment(periods[i].validThrough, "YYYY-MM-DD").month())) {
+                    if ((moment().month() > moment(periods[i].validFrom, "YYYY-MM-DD").month()) & (moment().month() < moment(periods[i].validThrough, "YYYY-MM-DD").month())) {
+                        return periods[i].weekPeriod;
+                    } else if ((moment().month() === moment(periods[i].validFrom, "YYYY-MM-DD").month()) & (moment().month() === moment(periods[i].validThrough, "YYYY-MM-DD").month())) {
                         if ((moment().date() >= moment(periods[i].validFrom, "YYYY-MM-DD").date()) & (moment().date() <= moment(periods[i].validThrough, "YYYY-MM-DD").date())) {
-                            return periods[i].weekPeriod;
+                            
+                             return periods[i].weekPeriod;
                             break;
                         } else {
                             continue;
                         }
                     }
+
+
+
                 }
             }
         },
@@ -141,9 +147,10 @@
          */
         buildPropertyDays: function(data) {
             //take the weekPeriod array
-        
+
             var weekPeriod, _this = this;
             if (this.settings.weekPeriods) {
+
                 weekPeriod = this.getWeekPeriod(data);
             } else {
                 weekPeriod = data["weekPeriod"];
@@ -151,9 +158,9 @@
             try {
                 var propertyDays = this._propertyDays;
                 $.each(propertyDays, function(days) {
-                   
+
                     $.each(weekPeriod, function(day) {
-                        
+
                         //if we have an Object with the same name, 
                         if (_this.checkDayMatch(propertyDays[days], weekPeriod[day])) {
                             //we add the openingHours
@@ -393,7 +400,7 @@
             var container = $(cont);
 
             this._additionalData = this.getAdditionalData(lang);
-            
+
             this.createHeader(container, this._additionalData.header);
             for (var i = 0; i < days.length; i++) {
 
