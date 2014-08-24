@@ -43,17 +43,18 @@
             req.send(null);
             return data;
         },
-        /*
-         * Get the JSON file using Ajax
-         * 
-         * @param {type} url
-         * @returns {undefined}
-         */
-        getJsonFile: function(url) {
-            return JSON.parse(this.getData(url, 'text/html;charset=utf-8;'));
-        },
+        
         getAdditionalData: function(lang) {
-            var addData = this.getJsonFile('additionalData.json');
+            var addData;
+            $.ajax({
+                type: "GET",
+                url: "additionalData.json",
+                async: false,
+                dataType: "json",
+                success: function(data) {
+                    addData = data;
+                }
+            });
             if (addData[lang]) {
                 return addData[lang];
             } else {
@@ -80,8 +81,6 @@
          * @returns {undefined}
          */
         addOpeningHours: function(dayList, dayPeriod) {
-            console.log("aici");
-            console.log(dayList)
             if (dayList.hours.length === 0) {
                 /*
                  * if there is no opening time in the specific day, we just add an object to the hours list
@@ -121,22 +120,20 @@
          * @param {type} periods
          */
         getWeekPeriod: function(periods) {
+            console.log(periods)
             if (periods instanceof Array) {
                 for (var i = 0; i < periods.length; i++) {
                     if ((moment().month() > moment(periods[i].validFrom, "YYYY-MM-DD").month()) & (moment().month() < moment(periods[i].validThrough, "YYYY-MM-DD").month())) {
                         return periods[i].weekPeriod;
                     } else if ((moment().month() === moment(periods[i].validFrom, "YYYY-MM-DD").month()) & (moment().month() === moment(periods[i].validThrough, "YYYY-MM-DD").month())) {
                         if ((moment().date() >= moment(periods[i].validFrom, "YYYY-MM-DD").date()) & (moment().date() <= moment(periods[i].validThrough, "YYYY-MM-DD").date())) {
-                            
-                             return periods[i].weekPeriod;
+
+                            return periods[i].weekPeriod;
                             break;
                         } else {
                             continue;
                         }
                     }
-
-
-
                 }
             }
         },
@@ -160,7 +157,6 @@
                 $.each(propertyDays, function(days) {
 
                     $.each(weekPeriod, function(day) {
-
                         //if we have an Object with the same name, 
                         if (_this.checkDayMatch(propertyDays[days], weekPeriod[day])) {
                             //we add the openingHours
