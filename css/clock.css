@@ -1,0 +1,111 @@
+.clock-container {
+    display:table;
+    width:100%;
+}
+.clock {
+    width:75px;
+    height:75px;
+    background:white;
+    border-radius: 50%;
+    border: 5px solid #41484c;
+    position:relative;
+    float:left;
+}
+
+.clock:after {
+    background: black;
+    border-radius: 4px;
+    display:block;
+    top:50%;
+    left:50%;
+    margin: -4px 0 0 -4px;
+    position:absolute;
+    height:8px;
+    width:8px;
+    content: "";
+}
+.hour {
+    position: absolute;
+    background: black;
+    top:50%;
+    left:50%;
+    border-radius: 4px 0 0 4px;
+    margin: -3px 0 -3px -25%;
+    padding: 3px 0 3px 25%;
+    transform-origin: 100% 50% 0;
+    
+}
+
+.minute {
+    position: absolute;
+    background: black;
+    top:50%;
+    left:50%;
+    border-radius: 3px 3px 0 0 ;
+    margin: -40% -2px 0;
+    padding: 40% 2px 0 ;
+    transform-origin:50% 100% 0;
+    
+}
+
+.seconds {
+    position: absolute;
+    background: black;
+    top:50%;
+    left:50%;
+    border-radius: 1px 1px 0 0 ;
+    margin: -40% -1px 0 0;
+    padding: 40% 1px 0 0;
+    transform-origin: 50% 100% 0;
+}
+
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+
+  }
+  to { 
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes rotate {
+  from 0%{
+    -moz-transform: rotate(0deg);
+
+  }
+  to 100%{ 
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes rotate {
+  from 0%{
+    -o-transform: rotate(0deg);
+
+  }
+  to 100%{ 
+    -o-transform: rotate(360deg);
+  }
+}
+
+@-ms-keyframes rotate {
+  from 0%{
+    -ms-transform: rotate(0deg);
+
+  }
+  to 100%{ 
+    -ms-transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  from 0%{
+    transform: rotate(0deg);
+
+  }
+  to 100%{ 
+    transform: rotate(360deg);
+  }
+}
