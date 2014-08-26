@@ -20,6 +20,7 @@
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
+        <script src="js/main.js"></script>
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -66,7 +67,7 @@
 							<ul>
 								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Description</span></a></li>
 								<li><a href="#settings" id="settings-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Settings</span></a></li>
-								<li><a href="#about" id="about-link" class="skel-layers-ignoreHref"><span class="icon fa-cogs">Demos</span></a></li>
+								<li><a href="#examples" id="examples-link" class="skel-layers-ignoreHref"><span class="icon fa-cogs">Demos</span></a></li>
 								<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-bug">Bug report</span></a></li>
 							</ul>
 						</nav>
@@ -126,22 +127,36 @@
 					</section>
 
 				<!-- About Me -->
-					<section id="about" class="three">
+					<section id="examples" class="three">
 						<div class="container">
 
 							<header>
-								<h2>About Me</h2>
+								<h2>Examples</h2>
 							</header>
-
-							<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
-							
-							<p>Tincidunt eu elit diam magnis pretium accumsan etiam id urna. Ridiculus 
-							ultricies curae quis et rhoncus velit. Lobortis elementum aliquet nec vitae 
-							laoreet eget cubilia quam non etiam odio tincidunt montes. Elementum sem 
-							parturient nulla quam placerat viverra mauris non cum elit tempus ullamcorper 
-							dolor. Libero rutrum ut lacinia donec curae mus vel quisque sociis nec 
-							ornare iaculis.</p>
-
+                            <div class="options">
+                                <label>Select the JSON file:</label>
+                                <select class="jsonFile">
+                                    <option value="singleWeek">Single Week</option>
+                                </select>
+                                <br />
+                                <label>Select language:</label>
+                                <select class="lang">
+                                    <option value="ro">RO</option>
+                                    <option value="en">EN</option>
+                                    <option value="de">DE</option>
+                                </select>
+                                <br />
+                                <label>Select the days form:</label>
+                                <select class="daysForm">
+                                    <option value="normal">Normal</option>
+                                    <option value="short">Short</option>
+                                    <option value="min">Minimal</option>
+                                </select>
+                            </div>
+                            
+                            <div class="openingHoursContainer">
+                                <h4>Result</h4>
+                            </div>
 						</div>
 					</section>
 			

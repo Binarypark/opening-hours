@@ -790,3 +790,12 @@
     text-align:left;
     font-weight:600;
 }
+
+.options {
+    width:40%;
+    float:left;
+    text-align: left;
+}
+select {
+    float:right;   
+}
