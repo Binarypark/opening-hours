@@ -1,4 +1,5 @@
 <?php 
+
 if (isset($_POST["email"])) {
     $from = $_POST["email"]; // sender
     $subject = $_POST["name"];
