@@ -13,7 +13,7 @@ $(function() {
                 });
                 $('.openingHoursContainer1').openingHours({
                     json: data,
-                    lang: 'en',
+                    lang: 'de',
                     daysForm: 'short'
                 });
             }

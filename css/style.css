@@ -797,8 +797,9 @@
     text-align: left;
 }
 
-#settings code {
-    font-size:0.8em;
+.settings p {
+    font-size:0.82em;
+    margin-bottom:0;
     text-align:left;
     float:left;
 }
@@ -807,4 +808,15 @@
 }
 .options {
     margin-top:50px;   
+}
+
+#useit p {
+    text-align: justify;
+    margin-bottom:15px;
+}
+p#mid {
+    text-align:center;   
+}
+.description strong {
+    font-weight:600;   
 }

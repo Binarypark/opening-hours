@@ -69,9 +69,9 @@
                     -->
                     <ul>
                         <li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Description</span></a></li>
-                        <li><a href="#settings" id="settings-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Settings</span></a></li>
-                        <li><a href="#examples" id="examples-link" class="skel-layers-ignoreHref"><span class="icon fa-cogs">Demos</span></a></li>
-                        <li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-bug">Bug report</span></a></li>
+                        <li><a href="#useit" id="useit-link" class="skel-layers-ignoreHref"><span class="icon fa-cogs">Where to use it</span></a></li>
+                        <li><a href="#settings1" id="settings1-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Settings</span></a></li>
+                        <li><a href="#bug" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-bug">Bug report</span></a></li>
                     </ul>
                 </nav>
 
@@ -106,66 +106,63 @@
                     </header>
 
                     <footer>
-                        <a href="#settings" class="button scrolly">Tell me more</a>
+                        <a href="#settings-1" class="button scrolly">Tell me more</a>
                     </footer>
 
                 </div>
             </section>
-
-            <!-- Portfolio -->
-            <section id="settings" class="two">
+            <section id="useit" class="section two">
                 <div class="container">
-
                     <header>
-                        <h2>How to?</h2>
+                        <h1>Scenario - owner of a local business</h1>
                     </header>
-
-                    <h1>Step 1: <strong>add the libraries</strong></h1>
-                    <code>&lt;link rel="stylesheet" href="OpeningHours.css" type="text/css" /&gt; <br />
-                        &lt;script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"&gt;&lt;/script&gt; <br />
-                        &lt;script type="text/javascript" src="moment-with-langs.js"&gt;&lt;/script&gt; <br />
-                        &lt;script type="text/javascript" src="OpeningHours.js"&gt;&lt;/script&gt;</code>
-
+                        <div class="description">
+                            <p>You are the owner of a Restaurant and you want to be showing the opening hours of your local business on the contact page of your website. Furthermore, you might have different opening hours based on the season (e.g. between January-June you have different Opening Hours as from Juli-September, etc). You don't have the time to go on your website and change it? <a href="https://github.com/Binarypark/opening-hours" target="_blank"><strong>OpeningHours.js</strong></a> is right here for you!</p>
+                            <p id="mid">Follow the steps described <a href="https://github.com/Binarypark/opening-hours#step-1---link-files" target="_blank">here</a> and let the library do the work for you!</p>
+                            <p id="mid">Write once, use all the time!</p>
+                        </div>
+                    
                 </div>
             </section>
-
-            <!-- About Me -->
-            <section id="examples" class="three">
+            <!-- Settings -->
+            <section id="settings1" class="settings two">
                 <div class="container">
 
                     <header>
-                        <h2>Examples</h2>
+                       <h1>Step 1: <strong>add the libraries at the top of your HTML document (inside the head section)</strong></h1>
                     </header>
-                    <div class="example">
-                        <code>
-                    $('container_id_or_class').openingHours({ <br />
-                    json: data, <br/>
-                    lang: 'en', <br />
-                    daysForm: 'normal' <br/>
-                });
-                        </code>
-                        <div class="openingHoursContainer">
-
-                    </div>
-                    </div>
 
                     
-                      <div class="example">
-                        <code>
-                    $('container_id_or_class').openingHours({ <br />
-                    json: data, <br/>
-                    lang: 'en', <br />
-                    daysForm: 'short' <br/>
-                });
-                        </code>
-                          
-                    <div class="openingHoursContainer1">
+                    <p>&lt;link rel="stylesheet" href="OpeningHours.css" type="text/css" /&gt;</p>
+                       <p> &lt;script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"&gt;&lt;/script&gt; </p>
+                       <p> &lt;script type="text/javascript" src="moment-with-langs.js"&gt;&lt;/script&gt; </p>
+                       <p> &lt;script type="text/javascript" src="OpeningHours.js"&gt;&lt;/script&gt;</p>
 
-                    </div>
-                    </div>
                 </div>
             </section>
 
+            <section class="settings two">
+                <div class="container">
+                    <header><h1>Step 2: Create the JSON with your Opening Hours</h1></header>
+                    
+                    <div>
+                        {
+                        "weekPeriod": [
+            {
+            "dayOfWeek": "Monday",
+            "opens": "HH:MM:SS",
+            "closes": "HH:MM:SS"
+        },
+        ...
+    ]
+}
+                        
+                    </div>
+                    
+
+                </div>
+            </section>
+           
             <!-- Contact -->
             <section id="contact" class="four">
                 <div class="container">
@@ -179,7 +176,7 @@
                         donec curae mus. Eleifend id porttitor ac ultricies lobortis sem nunc 
                         orci ridiculus faucibus a consectetur. Porttitor curae mauris urna mi dolor.</p>
 
-                    <form method="post" action="#">
+                    <form method="post" action="mail.php">
                         <div class="row half">
                             <div class="6u"><input type="text" name="name" placeholder="Name" /></div>
                             <div class="6u"><input type="text" name="email" placeholder="Email" /></div>
