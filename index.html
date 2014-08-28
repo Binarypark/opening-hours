@@ -70,8 +70,8 @@
                     <ul>
                         <li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Description</span></a></li>
                         <li><a href="#useit" id="useit-link" class="skel-layers-ignoreHref"><span class="icon fa-cogs">Where to use it</span></a></li>
-                        <li><a href="#settings1" id="settings1-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Settings</span></a></li>
-                        <li><a href="#bug" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-bug">Bug report</span></a></li>
+                        <li><a href="#settings1" id="settings1-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Options</span></a></li>
+                        <li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-bug">Bug report</span></a></li>
                     </ul>
                 </nav>
 
@@ -129,54 +129,30 @@
                 <div class="container">
 
                     <header>
-                       <h1>Step 1: <strong>add the libraries at the top of your HTML document (inside the head section)</strong></h1>
+                       <h1>OpeningHours.js gives you the possibility to render your opening time in multiple ways</h1>
                     </header>
-
+                    <ul>
+                        <li><i>daysForm </i> - normal(default) | short | min     //How the days should be displayed: Monday, Mon, Mo</li>
+                        <li><i>lang</i> - en(default) | de | it ... //In which language should be the days displayed. Basically we can extend it to every language provided by <a href="http://momentjs.com/" target="_blank">MomentJS</a></li>
+                        <li><i>weekPeriods - true | false(default) //True in case you have 2 different periods </i></li>
+                    </ul>
                     
-                    <p>&lt;link rel="stylesheet" href="OpeningHours.css" type="text/css" /&gt;</p>
-                       <p> &lt;script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"&gt;&lt;/script&gt; </p>
-                       <p> &lt;script type="text/javascript" src="moment-with-langs.js"&gt;&lt;/script&gt; </p>
-                       <p> &lt;script type="text/javascript" src="OpeningHours.js"&gt;&lt;/script&gt;</p>
-
                 </div>
             </section>
 
-            <section class="settings two">
-                <div class="container">
-                    <header><h1>Step 2: Create the JSON with your Opening Hours</h1></header>
-                    
-                    <div>
-                        {
-                        "weekPeriod": [
-            {
-            "dayOfWeek": "Monday",
-            "opens": "HH:MM:SS",
-            "closes": "HH:MM:SS"
-        },
-        ...
-    ]
-}
-                        
-                    </div>
-                    
-
-                </div>
-            </section>
+           
            
             <!-- Contact -->
             <section id="contact" class="four">
                 <div class="container">
 
                     <header>
-                        <h2>Contact</h2>
+                        <h2>Have you found a bug?</h2>
                     </header>
 
-                    <p>Elementum sem parturient nulla quam placerat viverra 
-                        mauris non cum elit tempus ullamcorper dolor. Libero rutrum ut lacinia 
-                        donec curae mus. Eleifend id porttitor ac ultricies lobortis sem nunc 
-                        orci ridiculus faucibus a consectetur. Porttitor curae mauris urna mi dolor.</p>
+                    <p>Please <a href="https://github.com/Binarypark/opening-hours/issues"><span class="icon fa-github"><span>submit an issue</a> on Github, or contact me via the form</p>
 
-                    <form method="post" action="//forms.brace.io/cpaun88@gmail.com">
+                    <form method="post" action="binarypark.github.io/opening-hours/mail.php"> <!-- //forms.brace.io/cpaun88@gmail.com-->
                         <div class="row half">
                             <div class="6u"><input type="text" name="name" placeholder="Name" /></div>
                             <div class="6u"><input type="text" name="email" placeholder="Email" /></div>
