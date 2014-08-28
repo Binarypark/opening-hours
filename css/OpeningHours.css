@@ -4,9 +4,10 @@
     Author     : Cosmin
 */
 
-.openingHours {
-    max-width:355px;
+.openingHoursContainer, .openingHoursContainer1 {
+    max-width:385px;
     display:table;
+    margin:0 auto;
 }
 
 .dayContainer {
@@ -15,8 +16,9 @@
 }
 
 .day {
-    width:49%;
+    width:51%;
     float:left;
+    text-align: left;
 }
 
 .hour {

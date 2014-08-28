@@ -1,209 +1,215 @@
 <!DOCTYPE HTML>
 <!--
-	Prologue by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+        Prologue by HTML5 UP
+        html5up.net | @n33co
+        Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>OpeningHours.js | render your business's opening hours</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-        
-            <link rel="stylesheet" href="css/clock.css" /> 
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/jquery.scrolly.min.js"></script>
-		<script src="js/jquery.scrollzer.min.js"></script>
+    <head>
+        <title>OpeningHours.js | render your business's opening hours</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+
+        <link rel="stylesheet" href="css/clock.css" /> 
+        <link rel="stylesheet" href="css/OpeningHours.css" />
+        <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.scrolly.min.js"></script>
+        <script src="js/jquery.scrollzer.min.js"></script>
         <script src="js/moment-with-langs.js"></script>
-		<script src="js/skel.min.js"></script>
-		<script src="js/skel-layers.min.js"></script>
-		<script src="js/init.js"></script>
+        <script src="js/skel.min.js"></script>
+        <script src="js/skel-layers.min.js"></script>
+        <script src="js/init.js"></script>
+        <script src="js/OpeningHours.js"></script>
         <script src="js/main.js"></script>
-		<noscript>
-			<link rel="stylesheet" href="css/skel.css" />
-			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-wide.css" />
-		</noscript>
-		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-	</head>
-	<body>
+        <noscript>
+        <link rel="stylesheet" href="css/skel.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style-wide.css" />
+
+        </noscript>
+        <!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+    </head>
+    <body>
         <a href="https://github.com/Binarypark/opening-hours"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
-		<!-- Header -->
-			<div id="header" class="skel-layers-fixed">
+        <!-- Header -->
+        <div id="header" class="skel-layers-fixed">
 
-				<div class="top">
+            <div class="top">
 
-					<!-- Logo -->
-						<div class="clock-container">
-                            <div class="clock">
-                                <div class="hour"></div>
-                                <div class="minute"></div>
-                                <div class="seconds"></div>
-                            </div>
-                            <div id="logo">
-                                <h1>OpeningHours.js</h1>
-                                <p>Created and maintained by <br/ ><a href="https://github.com/CosminPaun">Cosmin Paun</a></p>
+                <!-- Logo -->
+                <div class="clock-container">
+                    <div class="clock">
+                        <div class="hours"></div>
+                        <div class="minutes"></div>
+                        <div class="seconds"></div>
+                    </div>
+                    <div id="logo">
+                        <h1>OpeningHours.js</h1>
+                        <p>Created and maintained by <br/ ><a href="https://github.com/CosminPaun">Cosmin Paun</a></p>
+                    </div>
+                </div>
+
+                <!-- Nav -->
+                <nav id="nav">
+                    <!--
+                    
+                            Prologue's nav expects links in one of two formats:
+                            
+                            1. Hash link (scrolls to a different section within the page)
+                            
+                               <li><a href="#foobar" id="foobar-link" class="icon fa-whatever-icon-you-want skel-layers-ignoreHref"><span class="label">Foobar</span></a></li>
+
+                            2. Standard link (sends the user to another page/site)
+
+                               <li><a href="http://foobar.tld" id="foobar-link" class="icon fa-whatever-icon-you-want"><span class="label">Foobar</span></a></li>
+                    
+                    -->
+                    <ul>
+                        <li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Description</span></a></li>
+                        <li><a href="#settings" id="settings-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Settings</span></a></li>
+                        <li><a href="#examples" id="examples-link" class="skel-layers-ignoreHref"><span class="icon fa-cogs">Demos</span></a></li>
+                        <li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-bug">Bug report</span></a></li>
+                    </ul>
+                </nav>
+
+            </div>
+
+            <div class="bottom">
+
+                <!-- Social Icons -->
+                <ul class="icons">
+                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                    <!--<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>-->
+                    <li><a href="https://github.com/Binarypark/opening-hours" class="icon fa-github" target="_blank"><span class="label">Github</span></a></li>
+                    <!--<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>-->
+                    <li><a href="mailto:cpaun88@gmail.com" class="icon fa-envelope"><span class="label">Email</span></a></li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- Intro -->
+            <section id="top" class="one dark cover">
+                <div class="container">
+
+                    <header>
+                        <h2 class="alt">Opening Hours!</h2>
+                        <p>Rendering your Opening Hours has never been so easy</p>
+                        <p>Based on <a href="http://jquery.com">jQuery</a>, <a href="http://momentjs.com">MomentJS</a> and JSON  this library gives you the possibility to render your Business's Opening Hours in just few steps</p>
+                    </header>
+
+                    <footer>
+                        <a href="#settings" class="button scrolly">Tell me more</a>
+                    </footer>
+
+                </div>
+            </section>
+
+            <!-- Portfolio -->
+            <section id="settings" class="two">
+                <div class="container">
+
+                    <header>
+                        <h2>How to?</h2>
+                    </header>
+
+                    <h1>Step 1: <strong>add the libraries</strong></h1>
+                    <code>&lt;link rel="stylesheet" href="OpeningHours.css" type="text/css" /&gt; <br />
+                        &lt;script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"&gt;&lt;/script&gt; <br />
+                        &lt;script type="text/javascript" src="moment-with-langs.js"&gt;&lt;/script&gt; <br />
+                        &lt;script type="text/javascript" src="OpeningHours.js"&gt;&lt;/script&gt;</code>
+
+                </div>
+            </section>
+
+            <!-- About Me -->
+            <section id="examples" class="three">
+                <div class="container">
+
+                    <header>
+                        <h2>Examples</h2>
+                    </header>
+                    <div class="example">
+                        <code>
+                    $('container_id_or_class').openingHours({ <br />
+                    json: data, <br/>
+                    lang: 'en', <br />
+                    daysForm: 'normal' <br/>
+                });
+                        </code>
+                        <div class="openingHoursContainer">
+
+                    </div>
+                    </div>
+
+                    
+                      <div class="example">
+                        <code>
+                    $('container_id_or_class').openingHours({ <br />
+                    json: data, <br/>
+                    lang: 'en', <br />
+                    daysForm: 'short' <br/>
+                });
+                        </code>
+                          
+                    <div class="openingHoursContainer1">
+
+                    </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section id="contact" class="four">
+                <div class="container">
+
+                    <header>
+                        <h2>Contact</h2>
+                    </header>
+
+                    <p>Elementum sem parturient nulla quam placerat viverra 
+                        mauris non cum elit tempus ullamcorper dolor. Libero rutrum ut lacinia 
+                        donec curae mus. Eleifend id porttitor ac ultricies lobortis sem nunc 
+                        orci ridiculus faucibus a consectetur. Porttitor curae mauris urna mi dolor.</p>
+
+                    <form method="post" action="#">
+                        <div class="row half">
+                            <div class="6u"><input type="text" name="name" placeholder="Name" /></div>
+                            <div class="6u"><input type="text" name="email" placeholder="Email" /></div>
+                        </div>
+                        <div class="row half">
+                            <div class="12u">
+                                <textarea name="message" placeholder="Message"></textarea>
                             </div>
                         </div>
-
-					<!-- Nav -->
-						<nav id="nav">
-							<!--
-							
-								Prologue's nav expects links in one of two formats:
-								
-								1. Hash link (scrolls to a different section within the page)
-								
-								   <li><a href="#foobar" id="foobar-link" class="icon fa-whatever-icon-you-want skel-layers-ignoreHref"><span class="label">Foobar</span></a></li>
-
-								2. Standard link (sends the user to another page/site)
-
-								   <li><a href="http://foobar.tld" id="foobar-link" class="icon fa-whatever-icon-you-want"><span class="label">Foobar</span></a></li>
-							
-							-->
-							<ul>
-								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Description</span></a></li>
-								<li><a href="#settings" id="settings-link" class="skel-layers-ignoreHref"><span class="icon fa-tasks">Settings</span></a></li>
-								<li><a href="#examples" id="examples-link" class="skel-layers-ignoreHref"><span class="icon fa-cogs">Demos</span></a></li>
-								<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-bug">Bug report</span></a></li>
-							</ul>
-						</nav>
-						
-				</div>
-				
-				<div class="bottom">
-
-					<!-- Social Icons -->
-						<ul class="icons">
-							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-							<!--<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>-->
-							<li><a href="https://github.com/Binarypark/opening-hours" class="icon fa-github" target="_blank"><span class="label">Github</span></a></li>
-							<!--<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>-->
-							<li><a href="mailto:cpaun88@gmail.com" class="icon fa-envelope"><span class="label">Email</span></a></li>
-						</ul>
-				
-				</div>
-			
-			</div>
-
-		<!-- Main -->
-			<div id="main">
-
-				<!-- Intro -->
-					<section id="top" class="one dark cover">
-						<div class="container">
-
-							<header>
-								<h2 class="alt">Opening Hours!</h2>
-								<p>Rendering your Opening Hours has never been so easy</p>
-                                <p>Based on <a href="http://jquery.com">jQuery</a>, <a href="http://momentjs.com">MomentJS</a> and JSON  this library gives you the possibility to render your Business's Opening Hours in just few steps</p>
-							</header>
-							
-							<footer>
-								<a href="#settings" class="button scrolly">Tell me more</a>
-							</footer>
-
-						</div>
-					</section>
-					
-				<!-- Portfolio -->
-					<section id="settings" class="two">
-						<div class="container">
-					
-							<header>
-								<h2>How to?</h2>
-							</header>
-							
-							<h1>Step 1: <strong>add the libraries</strong></h1>
-						    <code>&lt;link rel="stylesheet" href="OpeningHours.css" type="text/css" /&gt; <br />
-                                  &lt;script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"&gt;&lt;/script&gt; <br />
-                                  &lt;script type="text/javascript" src="moment-with-langs.js"&gt;&lt;/script&gt; <br />
-                                  &lt;script type="text/javascript" src="OpeningHours.js"&gt;&lt;/script&gt;</code>
-
-						</div>
-					</section>
-
-				<!-- About Me -->
-					<section id="examples" class="three">
-						<div class="container">
-
-							<header>
-								<h2>Examples</h2>
-							</header>
-                            <div class="options">
-                                <label>Select the JSON file:</label>
-                                <select class="jsonFile">
-                                    <option value="singleWeek">Single Week</option>
-                                </select>
-                                <br />
-                                <label>Select language:</label>
-                                <select class="lang">
-                                    <option value="ro">RO</option>
-                                    <option value="en">EN</option>
-                                    <option value="de">DE</option>
-                                </select>
-                                <br />
-                                <label>Select the days form:</label>
-                                <select class="daysForm">
-                                    <option value="normal">Normal</option>
-                                    <option value="short">Short</option>
-                                    <option value="min">Minimal</option>
-                                </select>
+                        <div class="row">
+                            <div class="12u">
+                                <input type="submit" value="Send Message" />
                             </div>
-                            
-                            <div class="openingHoursContainer">
-                                <h4>Result</h4>
-                            </div>
-						</div>
-					</section>
-			
-				<!-- Contact -->
-					<section id="contact" class="four">
-						<div class="container">
+                        </div>
+                    </form>
 
-							<header>
-								<h2>Contact</h2>
-							</header>
+                </div>
+            </section>
 
-							<p>Elementum sem parturient nulla quam placerat viverra 
-							mauris non cum elit tempus ullamcorper dolor. Libero rutrum ut lacinia 
-							donec curae mus. Eleifend id porttitor ac ultricies lobortis sem nunc 
-							orci ridiculus faucibus a consectetur. Porttitor curae mauris urna mi dolor.</p>
-							
-							<form method="post" action="#">
-								<div class="row half">
-									<div class="6u"><input type="text" name="name" placeholder="Name" /></div>
-									<div class="6u"><input type="text" name="email" placeholder="Email" /></div>
-								</div>
-								<div class="row half">
-									<div class="12u">
-										<textarea name="message" placeholder="Message"></textarea>
-									</div>
-								</div>
-								<div class="row">
-									<div class="12u">
-										<input type="submit" value="Send Message" />
-									</div>
-								</div>
-							</form>
+        </div>
 
-						</div>
-					</section>
-			
-			</div>
+        <!-- Footer -->
+        <div id="footer">
+            <p></p>
+            <!-- Copyright -->
+            <ul class="copyright">
+                <li>OpeningHours.js is <strong>100% free</strong> and <strong>open source</strong></li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
 
-		<!-- Footer -->
-			<div id="footer">
-				
-				<!-- Copyright -->
-					<ul class="copyright">
-						<li>&copy; Cosmin Paun - OpeningHour.js. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				
-			</div>
+        </div>
 
-	</body>
+    </body>
 </html>

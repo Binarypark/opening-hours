@@ -80,7 +80,7 @@
          * @returns {undefined}
          */
         addOpeningHours: function(dayList, dayPeriod) {
-   
+      
             if (dayList.hours.length === 0) {
                 /*
                  * if there is no opening time in the specific day, we just add an object to the hours list
@@ -141,12 +141,13 @@
          */
         buildPropertyDays: function(data) {
             //take the weekPeriod array
-        
+ 
             var weekPeriod, _this = this;
             if (this.settings.weekPeriods) {
                 weekPeriod = this.getWeekPeriod(data);
             } else {
                 weekPeriod = data["weekPeriod"];
+                
             }
             try {
                 var propertyDays = this._propertyDays;
@@ -389,7 +390,7 @@
          */
         createOpeningHours: function(cont, days, lang, daysType) {
             var momentDays = this.createMomentDays(lang, daysType);
-
+          
             var container = $(cont);
 
             this._additionalData = this.getAdditionalData(lang);

@@ -11,8 +11,8 @@
             minute = now.minutes() * 6 + second / 60,
             hour = ((now.hours() % 12) / 12) * 360 + 90 + minute / 12;
 
-        $('.hour').css("transform", "rotate(" + hour + "deg)");
-        $('.minute').css("transform", "rotate(" + minute + "deg)");
+        $('.hours').css("transform", "rotate(" + hour + "deg)");
+        $('.minutes').css("transform", "rotate(" + minute + "deg)");
         $('.seconds').css("transform", "rotate(" + second + "deg)");
     }
     setInterval(updateClock, 1000);

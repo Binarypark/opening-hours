@@ -687,7 +687,9 @@
 		box-shadow: inset 0 1px 0 0 rgba(0,0,0,0.05), inset 0 0.1em 0.1em 0 rgba(0,0,0,0.025);
 		font-size: 0.8em;
 	}
-
+    #footer strong {
+        font-weight:600;   
+    }
 		#footer .copyright
 		{
 			cursor: default;
@@ -784,18 +786,20 @@
 				background-color: #e8edec;
 			}
 
-
-.container code {
-    float:left;  
-    text-align:left;
-    font-weight:600;
+.example {
+ margin-bottom:10px;   
 }
-
-.options {
-    width:40%;
+.example code{
+    font-weight:600;
+    border-right:1px solid black;
+    width:50%;
     float:left;
     text-align: left;
 }
-select {
-    float:right;   
+
+#examples header {
+    margin-bottom: 0;   
+}
+.options {
+    margin-top:50px;   
 }
