@@ -797,6 +797,11 @@
     text-align: left;
 }
 
+#settings code {
+    font-size:0.6em;
+    text-align:left;
+    float:left;
+}
 #examples header {
     margin-bottom: 0;   
 }
