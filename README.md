@@ -24,11 +24,11 @@ Write the JSON file containing the information about the days of the week where 
         {
             "dayOfWeek" : Name of the day (Monday, Tuesday, Wednesday etc.)
             "opens" : The opening time - written in format HH:MM:SS
-            "closes : The closing time - written in format HH:MM:SS
+            "closes" : The closing time - written in format HH:MM:SS
         },
         ...
     ] 
-    
+}
 ```
 You can find more examples in the folder ```tests```:
 
