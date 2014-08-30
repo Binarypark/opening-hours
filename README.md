@@ -1,4 +1,4 @@
-    #OpeningHours.js#
+#OpeningHours.js
 
 An easy-to-use library for rendering your company's Opening Hours. All you need is JSON, [jQuery](http://jquery.com/) and [momentjs](http://momentjs.com/)
 
@@ -18,10 +18,17 @@ An easy-to-use library for rendering your company's Opening Hours. All you need 
 ### Step 2 - the JSON file
 
 Write the JSON file containing the information about the days of the week where there are opening hours. The JSON file should contain just the days when there are opening hours, following the format:
-```
-    "dayOfWeek" : Name of the day
-    "opens" : The opening time - written in format HH:MM:SS
-    "closes : The closing time - written in format HH:MM:SS
+```json
+{ 
+    weekPeriod : [
+        {
+            "dayOfWeek" : Name of the day (Monday, Tuesday, Wednesday etc.)
+            "opens" : The opening time - written in format HH:MM:SS
+            "closes : The closing time - written in format HH:MM:SS
+        },
+        ...
+    ] 
+    
 ```
 You can find more examples in the folder ```tests```:
 
@@ -86,4 +93,11 @@ $(function() {
 
 ## Options available
  
+```
+daysForm - normal(default) | short | min    //How the days should be displayed: Monday, Mon, Mo
+lang - en(default) | de | it ...            //In which language should be the days displayed. Basically we can extend it to every language provided by MomentJS
+weekPeriods - true | false(default)         //True in case you have 2 different opening hours periods during 1 year
+
+```
+
 ```... more to come soon .... ```
