@@ -12,8 +12,15 @@
             hour = ((now.hours() % 12) / 12) * 360 + 90 + minute / 12;
 
         $('.hours').css("transform", "rotate(" + hour + "deg)");
+        $('.hours').css("-ms-transform", "rotate(" + hour + "deg)");
+        $(".hours").css("-webkit-transform", "rotate(" + hour + "deg)");
         $('.minutes').css("transform", "rotate(" + minute + "deg)");
+        $('.minutes').css("-ms-transform", "rotate(" + minute + "deg)");
+        $(".minutes").css("-webkit-transform", "rotate(" + minute + "deg)");
         $('.seconds').css("transform", "rotate(" + second + "deg)");
+        $('.seconds').css("-ms-transform", "rotate(" + second + "deg)");
+        $(".seconds").css("-webkit-transform", "rotate(" + second + "deg)");
+      
     }
     setInterval(updateClock, 1000);
 	skel.init({
