@@ -18,7 +18,7 @@ An easy-to-use library for rendering your company's Opening Hours. All you need 
 ### Step 2 - the JSON file
 
 Write the JSON file containing the information about the days of the week where there are opening hours. The JSON file should contain just the days when there are opening hours, following the format:
-```json
+```
 { 
     weekPeriod : [
         {
